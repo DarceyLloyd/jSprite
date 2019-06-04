@@ -36,6 +36,6 @@ let mySprite = new jSprite({
 
 ### <b>USAGE DEMOS:</b>
 
-DEMO 1: https://aftc.io/jSprite/
+DEMO 1: <a href="https://aftc.io/jSprite/" target="_blank">https://aftc.io/jSprite/</a>
 
-DEMO 2: http://aftc.io/jSprite/dynamic
+DEMO 2: <a href="https://aftc.io/jSprite/dynamic" target="_blank">https://aftc.io/jSprite/dynamic</a>
