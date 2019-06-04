@@ -33,4 +33,4 @@ package-lock.json
 ########
 .old
 *.url
-./creative
+creative/
