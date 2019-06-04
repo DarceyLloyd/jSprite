@@ -32,4 +32,4 @@ package-lock.json
 # Misc #
 ########
 .old
-.url
+*.url
