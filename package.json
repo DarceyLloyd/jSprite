@@ -1,0 +1,22 @@
+{
+  "name": "jsprite",
+  "version": "0.1.0",
+  "description": "javascript sprite animations for html, three and babylon",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "darcey@aftc.io",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-jsbeautifier": "^3.0.0",
+    "gulp-rename": "^1.4.0",
+    "uglify-es": "^3.3.9",
+    "gulp-uglify": "^3.0.2"
+  },
+  "dependencies": {
+    
+  }
+}
