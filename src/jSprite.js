@@ -11,7 +11,7 @@ let jSprite = function () {
         timing: false,
         timings: false,
         repeat: true,
-        widthOffset: false
+        widthOffset: 0
     };
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -19,7 +19,12 @@ let jSprite = function () {
     if (arguments[0] && typeof (arguments[0]) == "object") {
         for (var key in arguments[0]) {
             if (args.hasOwnProperty(key)) {
-                args[key] = arguments[0][key];
+                let v = arguments[0][key];
+                if (v == undefined){
+                    args[key] = false;
+                } else {
+                    args[key] = arguments[0][key];
+                }                
             }
         }
     }
@@ -36,16 +41,17 @@ let jSprite = function () {
         frameW: 0,
         frameH: 0,
         frame: 0,
+        frames: [],
         maxFrames: 0,
         timer: false,
         col: 0,
         row: 1,
-        prevCol: 0,
-        prevRow: 0,
         x: 0,
         y: 0,
         xLim: 0,
         yLim: 0,
+        play: true,
+        status: "stopped", // playing, stopped
     };
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -97,7 +103,7 @@ let jSprite = function () {
 
     function imageLoaded(e) {
         // log("jSprite.imageLoaded(e)");
-        // log(e);
+        // log(e.target);
 
         // We can now get the width and height of the sprite sheet calculate vars
         vars.spriteSheetW = e.target.width;
@@ -107,9 +113,8 @@ let jSprite = function () {
         vars.frameW = Math.ceil(e.target.width / args.columns);
         vars.frameH = Math.ceil(e.target.height / args.rows);
 
-        if (args.widthOffset !== false){
-            vars.frameW += args.widthOffset;
-        }
+        // Handle width offset
+        vars.frameW += args.widthOffset;
 
         // log("frameW = " + vars.frameW + "   frameH = " + vars.frameH);
         vars.dom.container.style.width = vars.frameW + "px";
@@ -118,12 +123,37 @@ let jSprite = function () {
         // Limits
         vars.maxFrames = args.columns * args.rows;
 
-        if (args.frames !== false) {
+        if (typeof(args.frames) == "number") {
             vars.maxFrames = args.frames;
         }
 
         vars.xLim = vars.spriteSheetW / vars.frameW;
         vars.yLim = vars.spriteSheetH / vars.frameH;
+
+        // Calculate all frames and background positions
+        // NOTE: This was done in timing loop but to make start frame and end frame playback easier
+        // the control to get specific frame from vars.frames by index (index = frame no you want)
+        // is easier
+
+        for (let row=1; row <= args.rows; row++){
+            for (let col=1; col <= args.columns; col++){
+
+                
+                if (vars.col > args.columns) {
+                    vars.col = 1;
+                    vars.row++;
+        
+                    if (vars.row > args.rows) {
+                        vars.row = 1;
+                    }
+                }
+        
+                vars.x = 0 - ((vars.col - 1) * vars.frameW);
+                vars.y = 0 - ((vars.row - 1) * vars.frameH);
+
+            }
+        }
+        
 
 
         // setup css background on container from img src
@@ -133,8 +163,8 @@ let jSprite = function () {
         vars.dom.container.style.backgroundPosition = "0px 0px";
 
 
-
-
+        // log(args);
+        // log(vars);
 
         animate();
     }
@@ -144,6 +174,9 @@ let jSprite = function () {
 
     function animate() {
         // log("jSprite.animate()");
+        if (vars.play !== false){
+            vars.status = "playing";
+        }
         vars.frame++;
         vars.col++;
 
@@ -170,15 +203,25 @@ let jSprite = function () {
         vars.dom.container.style.backgroundPosition = vars.x + "px " + vars.y + "px";
 
         // Limits
+        let frameTime = getFrameTime();
+        
         if (vars.frame < vars.maxFrames) {
-
-            setTimeout(animate, getFrameTime())
+            if (vars.play){
+                setTimeout(animate, frameTime);
+            }
         } else {
-            if (args.repeat) {
-                vars.frame = 0;
-                vars.col = 0;
-                vars.row = 1;
-                setTimeout(animate, getFrameTime())
+            vars.frame = 0;
+            vars.col = 0;
+            vars.row = 1;
+
+            if (args.repeat) {                
+                if (vars.play){
+                    setTimeout(animate, frameTime);
+                } else {
+                    vars.status = "stopped";
+                }
+            } else {
+                vars.status = "stopped";
             }
         }
 
@@ -198,6 +241,7 @@ let jSprite = function () {
         } else {
             // timing is array based must be same size as frames
             let t = args.timings[(vars.frame-1)];
+            // log(vars.frame + " : " + t);
             if (!t){
                 t = 1000;
             }
@@ -209,27 +253,52 @@ let jSprite = function () {
 
 
 
-    function start() {
-        log("jSprite.start()");
+    function start(reset=false) {
+        // log("jSprite.start()");
+        // log(vars.status);
 
-        if (vars.timer !== false) {
-            clearInterval(vars.timer);
-            vars.timer = false;
+        if (reset){
+            vars.play = true;
+            vars.col = 0;
+            vars.row = 1;
+            vars.frame = 0;
         }
 
-        vars.timer = setInterval(animate, 1000);
+        if (vars.status != "playing"){
+            vars.play = true;
+            animate();
+        }
+        
+        // if (vars.timer !== false) {
+        //     clearInterval(vars.timer);
+        //     vars.timer = false;
+        // }
+        // vars.timer = setInterval(animate, 1000);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
+
+
     function stop() {
-        log("jSprite.stop()");
+        // log("jSprite.stop()");
+
+        vars.play = false;
+        vars.status = "stopped";
+
+        // clearInterval(vars.timer);
+        // vars.timer = false;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
     // UTILS
     function log(arg){ console.log(arg); }
+    function convertUndefinedToFalse(v) {
+        if (v == undefined){
+            v = false;
+        };
+    }
 
 
     // PUBLIC
