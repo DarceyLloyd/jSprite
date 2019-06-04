@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>jSprite - Darcey@aftc.io</title>
-    <script src="../dist/jsprite.js"></script>
+    <script src="./jsprite.min.js?v=<?php echo(rand(0,9999999)); ?>"></script>
     <style>
     .bd {
         border: 1px solid #000000;
@@ -99,16 +99,6 @@
                 repeat: true
             });
 
-            sprite[3] = new jSprite({
-                spriteSheet: "./images/sheet4.png",
-                container: "sp4",
-                columns: 6,
-                rows: 2,
-                frames: 6,
-                // timing: 130,
-                timings: [100,150,200,250,300,350],
-                repeat: true
-            });
         }
     </script>
 </head>
@@ -154,24 +144,6 @@
     </div>
 
 
-
-    <div id="demo5" class="bd p5">
-        <div id="sp5" class="m5"></div>
-        <div class="btn-container">
-            <button onclick="sprite[4].start()" class="btn-left">START</button>
-            <button onclick="sprite[4].stop()" class="btn-right">STOP</button>
-        </div>
-    </div>
-
-
-
-    <div id="demo6" class="bd p5">
-        <div id="sp6" class="m5"></div>
-        <div class="btn-container">
-            <button onclick="sprite[5].start()" class="btn-left">START</button>
-            <button onclick="sprite[5].stop()" class="btn-right">STOP</button>
-        </div>
-    </div>
 
 
 </div>
