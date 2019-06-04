@@ -35,6 +35,5 @@ package-lock.json
 *.url
 
 
-!.gitignore
+
 creative/
-./creative
