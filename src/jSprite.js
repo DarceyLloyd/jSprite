@@ -1,6 +1,6 @@
 let jSprite = function () {
     
-    log("jSprite");
+    // log("jSprite");
 
     let args = {
         spriteSheet: false,
