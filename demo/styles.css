@@ -1,0 +1,57 @@
+html, body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+.bd {
+    border: 1px solid #000000;
+}
+.p5 {
+    padding: 5px;
+}
+.m5 {
+    margin: 5px;
+}
+button {
+    cursor: pointer;
+}
+
+
+#demo {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+#demo > div {
+    margin: 5px;
+    background: #FFCC00;
+    flex: 1;
+}
+
+#demo .btn-container {
+    display: flex;
+    /* flex-direction: row; */
+    /* flex-wrap: no-wrap; */
+}
+
+#demo .btn-container .btn-left {
+    display: inline-block;
+    width: 50%;
+    
+}
+
+#demo .btn-container .btn-right {
+    display: inline-block;
+    width: 50%;
+}
+
+
+h1 {
+
+}
