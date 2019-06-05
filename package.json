@@ -1,7 +1,7 @@
 {
   "name": "jsprite",
-  "version": "1.3.5",
-  "description": "javascript sprite animations for html, three and babylon",
+  "version": "1.5.0",
+  "description": "Quick and easy JavaScript sprites",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

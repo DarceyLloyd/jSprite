@@ -22,6 +22,36 @@ button {
 }
 
 
+#debug {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 5px;
+    top: 5px;
+}
+
+#debug .item {
+    min-width: 100px;
+    height: 24px;
+    background: #FFFFFF;
+    color: #000000;
+    opacity: 0.5;
+    margin-bottom: 3px;
+}
+
+
+.sprite-container {
+    width: 100%;
+    /* background: #CCCCCC; */
+    text-align: center;
+    margin: auto;
+}
+
+.sprite {
+    margin: auto;
+}
+
+
 #demo {
     display: flex;
     flex-wrap: wrap;
