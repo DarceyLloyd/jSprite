@@ -132,5 +132,14 @@ let mySprite = new jSprite({
 
 
 
+
+<br><br>
+
+<hr>
+
+<br>
+
+
+
 ### <b>USAGE DEMOS:</b>
 DEMO: <a href="https://aftc.io/jSprite/" target="_blank">https://aftc.io/jSprite/</a>
