@@ -21,6 +21,15 @@ button {
     cursor: pointer;
 }
 
+table, table td {
+    text-align: left;
+    vertical-align: top;
+}
+
+table th {
+    font-weight: bold;
+}
+
 
 #debug {
     display: none;

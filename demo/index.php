@@ -186,6 +186,117 @@
 		</div>
 	</section>
 
+
+
+
+			<div class="box">	
+				<div class="inner">
+					<h3>USAGE:</h3>
+					<pre style="text-align: left; max-width: 200px; width: 100%; margin: auto;">
+sp10 = new jSprite({
+	spriteSheet: "./images/sheet7.png",
+	container: "htmlID",
+	columns: 8,
+	rows: 4,
+	widthOffset: 0,
+	startFrame: 17,
+	length: 8,
+	timing: 75,
+	repeat: true
+});
+					</pre>
+					<h4>Parameter details:</h4>
+					<table style="width: 60%; margin: auto;">
+						<tr>
+							<th>Name</th>
+							<th>Type</th>
+							<th></th>
+							<th>Info</th>
+						</tr>
+						<tr>
+							<td>spriteSheet</td>
+							<td>String</td>
+							<td>REQUIRED</td>
+							<td>The path to the sprite sheet image</td>
+						</tr>
+						<tr>
+							<td>container</td>
+							<td>String</td>
+							<td>REQUIRED</td>
+							<td>ID of html element to use for the sprite</td>
+						</tr>
+						<tr>
+							<td>columns</td>
+							<td>Number</td>
+							<td>REQUIRED</td>
+							<td>The number of columns your sprite sheet has</td>
+						</tr>
+						<tr>
+							<td>rows</td>
+							<td>Number</td>
+							<td>REQUIRED</td>
+							<td>The number of rows your sprite sheet has</td>
+						</tr>
+						<tr>
+							<td>timing</td>
+							<td>Number</td>
+							<td>REQUIRED</td>
+							<td>The delay in ms between each frame</td>
+						</tr>
+						<tr>
+							<td>widthOffset</td>
+							<td>Number</td>
+							<td></td>
+							<td>If the sprite is not quite divisible by it's no of columns then you can adjust it with the widthOffset</td>
+						</tr>
+						<tr>
+							<td>startFrame</td>
+							<td>Number</td>
+							<td></td>
+							<td>The number of which frame you would like to start on</td>
+						</tr>
+						<tr>
+							<td>length</td>
+							<td>Number</td>
+							<td></td>
+							<td>The number of frames you would like to play from the start frame (do not exceed max length)</td>
+						</tr>
+						<tr>
+							<td>repeat</td>
+							<td>Boolean</td>
+							<td></td>
+							<td>Do you want the sprite animation to repeat, yes = true, no = false</td>
+						</tr>
+					</table>
+
+					<hr>
+
+					<h4>Available methods:</h4>
+					<table style="width: 60%; margin: auto;">
+						<tr>
+							<th>Name</th>
+							<th>Info</th>
+						</tr>
+						<tr>
+							<td>start()</td>
+							<td>Starts/resumes the sprite animation</td>
+						</tr>
+						<tr>
+							<td>stop()</td>
+							<td>Stops the sprite animation</td>
+						</tr>
+						<tr>
+							<td>restart()</td>
+							<td>Restarts the sprite animation from start</td>
+						</tr>
+					</table>					
+
+				</div>
+			</div>
+
+
+
+
 	<!-- Main -->
 	<div id="main">
 		<div class="inner">
