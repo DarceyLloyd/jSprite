@@ -100,8 +100,11 @@ let mySprite = new jSprite({
 
 
 
+<br><br>
 
-					----- 
+<hr>
+
+<br>
 
 
 
