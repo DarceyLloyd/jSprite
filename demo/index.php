@@ -9,7 +9,17 @@
 
 	<link rel="stylesheet" href="./includes/css/styles.css">
     <script src="./jsprite.min.js?v=<?php echo(rand(0,9999999)); ?>"></script>
-    <!-- <script src="../dist/jsprite.js?v=<?php echo(rand(0,9999999)); ?>"></script> -->
+	<!-- <script src="../dist/jsprite.js?v=<?php echo(rand(0,9999999)); ?>"></script> -->
+	
+
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2426360-16"></script>
+	<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());    
+        gtag('config', 'UA-2426360-16');
+    </script>	
+
 
 	<script>
 		let sp1,sp2,sp3,sp4,sp5,sp6,sp7,sp8,sp9,sp10,sp11;
