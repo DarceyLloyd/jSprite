@@ -1,12 +1,12 @@
 {
   "name": "jsprite",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Quick and easy JavaScript sprites",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["sprite","sprite animation","animation","sprite sheet"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DarceyLloyd/jSprite.git"
