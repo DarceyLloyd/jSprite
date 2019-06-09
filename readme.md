@@ -8,7 +8,6 @@
 - Set container to the ID of the html element that will contain your sprite
 - Set no of columns the sprite sheet has
 - Set no of rows the sprite sheet has
-- If your sprite sheet doesn't use all the rows and columns you can specify the no of frames like so "frames:44"
 - If your sprite is not aligned on the x axis correctly you can adjust the x offset viaw "widthOffset: -5"
 - Set the timing of the sprite, note you can control the timings of each frame individually if you use timings and feed it an array of number matching the number of frames in your sprite.
 
@@ -166,6 +165,14 @@ let mySprite = new jSprite({
     <tr>
         <td>restart()</td>
         <td>Restarts the sprite animation from start</td>
+    </tr>
+    <tr>
+        <td>setStartFrame(frameNo)</td>
+        <td>Sets the sprite start frame</td>
+    </tr>
+    <tr>
+        <td>setLength()</td>
+        <td>Sets the length of the animations aka the no' of frames to play</td>
     </tr>
 </table>		
 
