@@ -21,14 +21,72 @@ button {
     cursor: pointer;
 }
 
-table, table td {
-    text-align: left;
-    vertical-align: top;
+
+
+
+.table-container {
+    width: 70%;
+    margin: 20px auto 20px auto;
+    border-top: 1px solid #666666;
 }
 
-table th {
-    font-weight: bold;
+.table-container h3 {
+    margin-top: 10px;
+    text-align: left;
 }
+
+
+.table-container table {
+    width: 100%;
+}
+
+
+.table-container table td {
+    text-align: left;
+    vertical-align: top;
+    padding: 5px;
+    font-size: 12px;
+}
+
+.table-container table th {
+    font-weight: bold;
+    margin: 0;
+    padding: 2px;
+    background: #353555;
+    border-bottom: 1px solid #64648f;
+}
+
+
+
+
+
+
+.info-box {
+    border-bottom: 1px solid #888888;
+    margin: auto auto 10px auto;
+    width: 150px;
+    height: 21px;
+}
+
+
+
+
+
+
+.code {
+    text-align: left;
+    border: 1px solid #000000;
+    background: #1d1b24;
+    padding: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+
+
+
+
 
 
 #debug {
@@ -47,6 +105,46 @@ table th {
     opacity: 0.5;
     margin-bottom: 3px;
 }
+
+
+
+#sp1 {
+    transform: scale(1);
+}
+#sp2 {
+    transform: scale(1.4);
+}
+#sp3 {
+    transform: scale(1.8);
+    margin-top: 34px;
+}
+#sp6 {
+    transform: scale(1.8);
+    margin-top: 5px;
+}
+#sp7 {
+    transform: scale(1.8);
+    margin-top: 27px;
+}
+#sp8 {
+    transform: scale(1.8);
+    margin-top: 27px;
+}
+#sp9 {
+    transform: scale(1.8);
+    margin-top: 27px;
+}
+#sp10 {
+    transform: scale(1.8);
+    margin-top: 27px;
+}
+#sp11 {
+    transform: scale(1.8);
+    margin-top: 27px;
+}
+
+
+
 
 
 .sprite-container {

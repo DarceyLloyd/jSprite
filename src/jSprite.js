@@ -7,13 +7,19 @@ let jSprite = function () {
         container: false,
         columns: false,
         rows: false,
+        autoStart: false,
+        repeat: true,
         startFrame: 1,
         endFrame: false,
         length: false,
         timing: false,
         timings: false,
-        repeat: true,
-        widthOffset: 0
+        widthOffset: 0,
+        onStart: false,
+        onStop: false,
+        onProgress: false,
+        onComplete: false,
+        onRepeat: false,
     };
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -46,7 +52,7 @@ let jSprite = function () {
         frames: [],
         maxFrames: 0,
         noOfFramesToPlay: 0,
-        play: true,
+        stopRequested: false,
         status: "stopped", // playing, stopped
     };
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -194,11 +200,11 @@ let jSprite = function () {
                 let x = 0 - ((col - 1) * vars.frameW);
                 let y = 0 - ((row - 1) * vars.frameH);
 
-                let msg = "";
-                msg += "row:" + row + "   ";
-                msg += "col:" + col + "   ";
-                msg += "x:" + x + "   ";
-                msg += "y:" + y + "   ";
+                // let msg = "";
+                // msg += "row:" + row + "   ";
+                // msg += "col:" + col + "   ";
+                // msg += "x:" + x + "   ";
+                // msg += "y:" + y + "   ";
                 // log(msg);
 
                 vars.frames.push( [x,y] );
@@ -220,14 +226,47 @@ let jSprite = function () {
         // log(vars);
 
         vars.frame = args.startFrame;
-        animate();
+
+        if (args.autoStart){
+            if (args.onStart !== false){
+                args.onStart();
+            }
+            animate();
+        }
+        
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
     function animate() {
+        // log("animate()");
         // log(vars.frame);
+
+        // Handle stop request
+        if (vars.stopRequested === true){
+            vars.stopRequested = false;
+            vars.status = "stopped";
+
+            if (args.onStop !== false){
+                args.onStop();
+            }
+
+            return;
+        }
+
+
+        vars.status = "playing";
+       
+
+        if (args.onProgress !== false){
+            let o = {
+                frame: vars.frame,
+                totalFrames: vars.maxFrames
+            }
+            args.onProgress(o);
+        }
+
 
         let x = vars.frames[(vars.frame-1)][0];
         let y = vars.frames[(vars.frame-1)][1];
@@ -247,19 +286,22 @@ let jSprite = function () {
         // Move on
         vars.frame++;
         if (vars.frame <= args.endFrame) {
-            if (vars.play){
-                setTimeout(animate, fTime);
-            }
+            setTimeout(animate, fTime);
         } else {
             vars.frame = args.startFrame;
 
-            if (args.repeat) {                
-                if (vars.play){
-                    setTimeout(animate, fTime);
-                } else {
-                    vars.status = "stopped";
+            if (args.repeat) {
+
+                if (args.onRepeat !== false){
+                    args.onRepeat();
                 }
+
+                setTimeout(animate, fTime);
             } else {
+                if (args.onComplete !== false){
+                    args.onComplete();
+                }
+
                 vars.status = "stopped";
             }
         }
@@ -290,34 +332,27 @@ let jSprite = function () {
 
 
     function restart(){
-        log("jSprite.restart()");
+        // log("jSprite.restart()");
         // log(vars.status);
 
-        vars.status = "stopped";
-        vars.play = false;
         vars.frame = args.startFrame;
-        setTimeout(function(){
-            vars.play = true;
+        if (vars.status == "stopped"){
             animate();
-        },100);
+        }
     }
 
 
 
     function start() {
-        // log("jSprite.start()");
-        // log(vars.status);
+        // log("jSprite.start(): vars.status = " + vars.status);
+        if (vars.status != "playing"){
 
-        if (vars.status != "playing"){    
-            vars.play = true;
+            if (args.onStart !== false){
+                args.onStart();
+            }
+
             animate();
         }
-        
-        // if (vars.timer !== false) {
-        //     clearInterval(vars.timer);
-        //     vars.timer = false;
-        // }
-        // vars.timer = setInterval(animate, 1000);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -326,12 +361,7 @@ let jSprite = function () {
 
     function stop() {
         // log("jSprite.stop()");
-
-        vars.play = false;
-        vars.status = "stopped";
-
-        // clearInterval(vars.timer);
-        // vars.timer = false;
+        vars.stopRequested = true;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

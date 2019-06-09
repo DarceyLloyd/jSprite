@@ -65,8 +65,38 @@ gulp.task("buildMin", gulp.series(buildMin));
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
+
+
+function copyFiles(done){
+
+    fs.copyFile('./dist/jsprite.min.js', './demo/jsprite.min.js', (err) => {
+        if (err){
+            throw err;
+        } else {
+            console.log('COPY: jsprite.min.js > demo/jsprite.min.js');
+        }
+    });
+
+
+    fs.copyFile('./dist/jsprite.js', './demo/jsprite.js', (err) => {
+        if (err){
+            throw err;
+        } else {
+            console.log('COPY: jsprite.js TO demo/jsprite.js');
+        }
+    });
+
+
+  // Gulp injecst the done and wants the done back... meh
+  return done();
+}
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-gulp.task("build", gulp.parallel(buildDev,buildMin));
+
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+gulp.task("build", gulp.series(buildDev,buildMin,copyFiles));
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -74,7 +104,7 @@ gulp.task("build", gulp.parallel(buildDev,buildMin));
 
 // Watch
 function watch() {
-    gulp.watch(files, gulp.parallel(buildDev,buildMin))
+    gulp.watch(files, gulp.series(buildDev,buildMin,copyFiles))
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 gulp.task("watch",watch);

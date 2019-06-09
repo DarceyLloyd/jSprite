@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="./includes/css/main.css" />
 
 	<link rel="stylesheet" href="./includes/css/styles.css">
-    <script src="./jsprite.min.js?v=<?php echo(rand(0,9999999)); ?>"></script>
+    <script src="./jsprite.js?v=<?php echo(rand(0,9999999)); ?>"></script>
 	<!-- <script src="../dist/jsprite.js?v=<?php echo(rand(0,9999999)); ?>"></script> -->
 	
 
@@ -33,6 +33,7 @@
 				// widthOffset: -6,
 				startFrame: 1,
 				timing: 100,
+				autoStart: true,
 				repeat: true
 			});
 
@@ -44,7 +45,40 @@
 				rows: 10,
 				widthOffset: 0,
 				timing: 120,
-				repeat: true
+				repeat: true,
+				autoStart: true,
+				onStart: function(){
+					let info = document.getElementById("ex2-start");
+					info.innerHTML = "STARTED";
+					setTimeout(function(){
+						info.innerHTML = "";
+					},1500);
+
+					let info2 = document.getElementById("ex2-stop");
+					info2.innerHTML = "";
+				},
+				onStop: function(){
+					let info = document.getElementById("ex2-stop");
+					info.innerHTML = "STOPPED!";
+				},
+				onProgress: function(e){
+					let info = document.getElementById("ex2-progress");
+					info.innerHTML = "Current frame " + e.frame + "/" + e.totalFrames;
+				},
+				onRepeat: function(e){
+					let info = document.getElementById("ex2-repeat");
+					info.innerHTML = "REPEAT!";
+					setTimeout(function(){
+						info.innerHTML = "";
+					},1500);
+				},
+				onComplete: function(){
+					let info = document.getElementById("ex2-complete");
+					info.innerHTML = "COMPLETE!";
+					setTimeout(function(){
+						info.innerHTML = "";
+					},1500);
+				}
 			});
 
 
@@ -58,6 +92,7 @@
 				endFrame: 27,
 				// length: 4,
 				timing: 30,
+				autoStart: true,
 				repeat: true
 			});
 
@@ -72,6 +107,7 @@
 				endFrame: 6,
 				// length: 4,
 				timing: 100,
+				autoStart: true,
 				repeat: true
 			});
 
@@ -100,6 +136,7 @@
 				// endFrame: 27,
 				// length: 4,
 				timing: 30,
+				autoStart: true,
 				repeat: true
 			});
 
@@ -115,6 +152,7 @@
 				// endFrame: 27,
 				// length: 4,
 				timing: 500,
+				autoStart: true,
 				repeat: true
             });
             
@@ -126,6 +164,7 @@
 				widthOffset: 0,
 				length: 8,
 				timing: 75,
+				autoStart: true,
 				repeat: true
 			});
 
@@ -140,6 +179,7 @@
 				// endFrame: 27,
 				length: 8,
 				timing: 75,
+				autoStart: true,
 				repeat: true
 			});
 
@@ -154,6 +194,7 @@
 				// endFrame: 27,
 				length: 8,
 				timing: 75,
+				autoStart: true,
 				repeat: true
             });
             
@@ -168,6 +209,7 @@
 				// endFrame: 27,
 				length: 8,
 				timing: 100,
+				autoStart: true,
 				repeat: true
 			});
 		}
@@ -212,94 +254,136 @@ sp10 = new jSprite({
 	startFrame: 17,
 	length: 8,
 	timing: 75,
-	repeat: true
+	autoStart: true,
+	repeat: true,
+	onComplete: function,
+	onProgress: function,
+	onComplete: function,
+	onRepeat: function,
+	onStop: function
 });
 					</pre>
-					<h4>Parameter details:</h4>
-					<table style="width: 60%; margin: auto;">
-						<tr>
-							<th>Name</th>
-							<th>Type</th>
-							<th></th>
-							<th>Info</th>
-						</tr>
-						<tr>
-							<td>spriteSheet</td>
-							<td>String</td>
-							<td>REQUIRED</td>
-							<td>The path to the sprite sheet image</td>
-						</tr>
-						<tr>
-							<td>container</td>
-							<td>String</td>
-							<td>REQUIRED</td>
-							<td>ID of html element to use for the sprite</td>
-						</tr>
-						<tr>
-							<td>columns</td>
-							<td>Number</td>
-							<td>REQUIRED</td>
-							<td>The number of columns your sprite sheet has</td>
-						</tr>
-						<tr>
-							<td>rows</td>
-							<td>Number</td>
-							<td>REQUIRED</td>
-							<td>The number of rows your sprite sheet has</td>
-						</tr>
-						<tr>
-							<td>timing</td>
-							<td>Number</td>
-							<td>REQUIRED</td>
-							<td>The delay in ms between each frame</td>
-						</tr>
-						<tr>
-							<td>widthOffset</td>
-							<td>Number</td>
-							<td></td>
-							<td>If the sprite is not quite divisible by it's no of columns then you can adjust it with the widthOffset</td>
-						</tr>
-						<tr>
-							<td>startFrame</td>
-							<td>Number</td>
-							<td></td>
-							<td>The number of which frame you would like to start on</td>
-						</tr>
-						<tr>
-							<td>length</td>
-							<td>Number</td>
-							<td></td>
-							<td>The number of frames you would like to play from the start frame (do not exceed max length)</td>
-						</tr>
-						<tr>
-							<td>repeat</td>
-							<td>Boolean</td>
-							<td></td>
-							<td>Do you want the sprite animation to repeat, yes = true, no = false</td>
-						</tr>
-					</table>
 
-					<hr>
+					<div class="table-container">
+						<h3>Parameters:</h4>
+						<table>
+							<tr>
+								<th>Name</th>
+								<th>Type</th>
+								<th></th>
+								<th>Info</th>
+							</tr>
+							<tr>
+								<td>spriteSheet</td>
+								<td>String</td>
+								<td>REQUIRED</td>
+								<td>The path to the sprite sheet image</td>
+							</tr>
+							<tr>
+								<td>container</td>
+								<td>String</td>
+								<td>REQUIRED</td>
+								<td>ID of html element to use for the sprite</td>
+							</tr>
+							<tr>
+								<td>columns</td>
+								<td>Number</td>
+								<td>REQUIRED</td>
+								<td>The number of columns your sprite sheet has</td>
+							</tr>
+							<tr>
+								<td>rows</td>
+								<td>Number</td>
+								<td>REQUIRED</td>
+								<td>The number of rows your sprite sheet has</td>
+							</tr>
+							<tr>
+								<td>timing</td>
+								<td>Number</td>
+								<td>REQUIRED</td>
+								<td>The delay in ms between each frame</td>
+							</tr>
+							<tr>
+								<td>widthOffset</td>
+								<td>Number</td>
+								<td></td>
+								<td>If the sprite is not quite divisible by it's no of columns then you can adjust it with the widthOffset</td>
+							</tr>
+							<tr>
+								<td>startFrame</td>
+								<td>Number</td>
+								<td></td>
+								<td>The number of which frame you would like to start on</td>
+							</tr>
+							<tr>
+								<td>length</td>
+								<td>Number</td>
+								<td></td>
+								<td>The number of frames you would like to play from the start frame (do not exceed max length)</td>
+							</tr>
+							<tr>
+								<td>repeat</td>
+								<td>Boolean</td>
+								<td></td>
+								<td>Do you want the sprite animation to repeat, yes = true, no = false, default = true</td>
+							</tr>
+							<tr>
+								<td>onStart</td>
+								<td>function</td>
+								<td></td>
+								<td>Function callback for when start is called</td>
+							</tr>
+							<tr>
+								<td>onStop</td>
+								<td>function</td>
+								<td></td>
+								<td>Function callback for when stop is called</td>
+							</tr>
+							<tr>
+								<td>onProgress</td>
+								<td>function</td>
+								<td></td>
+								<td>Function called for each frame setp of the sprite</td>
+							</tr>
+							<tr>
+								<td>onRepeat</td>
+								<td>function</td>
+								<td></td>
+								<td>Function callback for when sprite animation repeats</td>
+							</tr>
+							<tr>
+								<td>onComplete</td>
+								<td>function</td>
+								<td></td>
+								<td>Function callback for when sprite animation is complete</td>
+							</tr>
+						</table>
+					</div>
 
-					<h4>Available methods:</h4>
-					<table style="width: 60%; margin: auto;">
-						<tr>
-							<th>Name</th>
-							<th>Info</th>
-						</tr>
-						<tr>
-							<td>start()</td>
-							<td>Starts/resumes the sprite animation</td>
-						</tr>
-						<tr>
-							<td>stop()</td>
-							<td>Stops the sprite animation</td>
-						</tr>
-						<tr>
-							<td>restart()</td>
-							<td>Restarts the sprite animation from start</td>
-						</tr>
-					</table>					
+
+					<br>
+
+					<div class="table-container">
+					<h3>Available methods:</h3>
+						<table>
+							<tr>
+								<th>Name</th>
+								<th>Info</th>
+							</tr>
+							<tr>
+								<td>start()</td>
+								<td>Starts/resumes the sprite animation</td>
+							</tr>
+							<tr>
+								<td>stop()</td>
+								<td>Stops the sprite animation</td>
+							</tr>
+							<tr>
+								<td>restart()</td>
+								<td>Restarts the sprite animation from start</td>
+							</tr>
+						</table>					
+					</div>
 
 				</div>
 			</div>
@@ -321,7 +405,17 @@ sp10 = new jSprite({
 					</div>
 					<div class="inner">
 						<h3>Example 1</h3>
-						<p>new jSprite(options);</p>
+						<p class='code'>
+						sp1 = new jSprite({<br>
+						spriteSheet: "./sprite_sheet.png",<br>
+						container: "elementId",<br>
+						columns: 6,<br>
+						rows: 6,<br>
+						timing: 100,<br>
+						autoStart: true,<br>
+						repeat: true<br>
+						});						
+						</p>
 						<div class="btn-container">
 							<button onclick="sp1.start()" class="btn-left button style2">START</button>
 							<button onclick="sp1.stop()" class="btn-right button style2">STOP</button>
@@ -336,7 +430,28 @@ sp10 = new jSprite({
 					</div>
 					<div class="inner">
 						<h3>Example 2</h3>
-						<p>new jSprite(options);</p>
+						<div id="ex2-start" class="info-box"></div>
+						<div id="ex2-stop" class="info-box"></div>
+						<div id="ex2-progress" class="info-box"></div>
+						<div id="ex2-repeat" class="info-box"></div>
+						<div id="ex2-complete" class="info-box"></div>
+						<p class="code" style="height: 90px; overflow: auto;">
+						sp2 = new jSprite({<br>
+							spriteSheet: "./sprite_sheet.png",<br>
+							container: "sp2",<br>
+							columns: 8,<br>
+							rows: 10,<br>
+							widthOffset: 0,<br>
+							timing: 120,<br>
+							repeat: true,<br>
+							autoStart: true,<br>
+							onStart: function(){},<br>
+							onStop: function(){},<br>
+							onProgress: function(){},<br>
+							onRepeat: function(){},<br>
+							onComplete: function(){}<br>
+						});
+						</p>
 						<div class="btn-container">
 							<button onclick="sp2.start()" class="btn-left button style2">START</button>
 							<button onclick="sp2.stop()" class="btn-right button style2">STOP</button>
@@ -351,7 +466,17 @@ sp10 = new jSprite({
 					</div>
 					<div class="inner">
 						<h3>Example 3</h3>
-						<p>new jSprite(options);</p>
+						<p class='code'>
+						sp3 = new jSprite({<br>
+						spriteSheet: "./sprite_sheet.png",<br>
+						container: "elementId",<br>
+						columns: 6,<br>
+						rows: 6,<br>
+						timing: 100,<br>
+						autoStart: true,<br>
+						repeat: true<br>
+						});						
+						</p>
 						<div class="btn-container">
 							<button onclick="sp3.start()" class="btn-left button style2">START</button>
 							<button onclick="sp3.stop()" class="btn-right button style2">STOP</button>
@@ -366,7 +491,17 @@ sp10 = new jSprite({
 					</div>
 					<div class="inner">
 						<h3>Example 4</h3>
-						<p>new jSprite(options);</p>
+												<p class='code'>
+						sp4 = new jSprite({<br>
+						spriteSheet: "./sprite_sheet.png",<br>
+						container: "elementId",<br>
+						columns: 6,<br>
+						rows: 6,<br>
+						timing: 100,<br>
+						autoStart: true,<br>
+						repeat: true<br>
+						});						
+						</p>
 						<div class="btn-container">
 							<button onclick="sp4.start()" class="btn-left button style2">START</button>
 							<button onclick="sp4.stop()" class="btn-right button style2">STOP</button>
@@ -381,10 +516,20 @@ sp10 = new jSprite({
 					</div>
 					<div class="inner">
 						<h3>No repeat example 5</h3>
-						<p>new jSprite(options);</p>
+												<p class='code'>
+						sp5 = new jSprite({<br>
+						spriteSheet: "./sprite_sheet.png",<br>
+						container: "elementId",<br>
+						columns: 6,<br>
+						rows: 6,<br>
+						timing: 100,<br>
+						autoStart: true,<br>
+						repeat: true<br>
+						});						
+						</p>
 						<div class="btn-container">
-							<button onclick="sp5.start()" class="btn-left button style2">START/RESUME</button>
-							<button onclick="sp5.restart()" class="btn-left button style2">START/RESTART</button>
+							<button onclick="sp5.start()" class="btn-left button style2">START / RESUME</button>
+							<button onclick="sp5.restart()" class="btn-left button style2">RESTART</button>
 							<button onclick="sp5.stop()" class="btn-right button style2">STOP</button>
 						</div>
 					</div>
@@ -397,7 +542,17 @@ sp10 = new jSprite({
 					</div>
 					<div class="inner">
 						<h3>Example 6</h3>
-						<p>new jSprite(options);</p>
+												<p class='code'>
+						sp6 = new jSprite({<br>
+						spriteSheet: "./sprite_sheet.png",<br>
+						container: "elementId",<br>
+						columns: 6,<br>
+						rows: 6,<br>
+						timing: 100,<br>
+						autoStart: true,<br>
+						repeat: true<br>
+						});						
+						</p>
 						<div class="btn-container">
 							<button onclick="sp6.start()" class="btn-left button style2">START</button>
 							<button onclick="sp6.stop()" class="btn-right button style2">STOP</button>
@@ -412,7 +567,17 @@ sp10 = new jSprite({
 					</div>
 					<div class="inner">
 						<h3>Example 7</h3>
-						<p>new jSprite(options);</p>
+												<p class='code'>
+						sp7 = new jSprite({<br>
+						spriteSheet: "./sprite_sheet.png",<br>
+						container: "elementId",<br>
+						columns: 6,<br>
+						rows: 6,<br>
+						timing: 100,<br>
+						autoStart: true,<br>
+						repeat: true<br>
+						});						
+						</p>
 						<div class="btn-container">
 							<button onclick="sp7.start()" class="btn-left button style2">START</button>
 							<button onclick="sp7.stop()" class="btn-right button style2">STOP</button>
@@ -427,7 +592,17 @@ sp10 = new jSprite({
 					</div>
 					<div class="inner">
 						<h3>Example 8</h3>
-						<p>new jSprite(options);</p>
+												<p class='code'>
+						sp8 = new jSprite({<br>
+						spriteSheet: "./sprite_sheet.png",<br>
+						container: "elementId",<br>
+						columns: 6,<br>
+						rows: 6,<br>
+						timing: 100,<br>
+						autoStart: true,<br>
+						repeat: true<br>
+						});						
+						</p>
 						<div class="btn-container">
 							<button onclick="sp8.start()" class="btn-left button style2">START</button>
 							<button onclick="sp8.stop()" class="btn-right button style2">STOP</button>
@@ -442,7 +617,17 @@ sp10 = new jSprite({
 					</div>
 					<div class="inner">
 						<h3>Example 9</h3>
-						<p>new jSprite(options);</p>
+												<p class='code'>
+						sp9 = new jSprite({<br>
+						spriteSheet: "./sprite_sheet.png",<br>
+						container: "elementId",<br>
+						columns: 6,<br>
+						rows: 6,<br>
+						timing: 100,<br>
+						autoStart: true,<br>
+						repeat: true<br>
+						});						
+						</p>
 						<div class="btn-container">
 							<button onclick="sp9.start()" class="btn-left button style2">START</button>
 							<button onclick="sp9.stop()" class="btn-right button style2">STOP</button>
@@ -457,7 +642,17 @@ sp10 = new jSprite({
 					</div>
 					<div class="inner">
 						<h3>Example 10</h3>
-						<p>new jSprite(options);</p>
+												<p class='code'>
+						sp10 = new jSprite({<br>
+						spriteSheet: "./sprite_sheet.png",<br>
+						container: "elementId",<br>
+						columns: 6,<br>
+						rows: 6,<br>
+						timing: 100,<br>
+						autoStart: true,<br>
+						repeat: true<br>
+						});						
+						</p>
 						<div class="btn-container">
 							<button onclick="sp10.start()" class="btn-left button style2">START</button>
 							<button onclick="sp10.stop()" class="btn-right button style2">STOP</button>
@@ -474,7 +669,17 @@ sp10 = new jSprite({
 					</div>
 					<div class="inner">
 						<h3>Example 11</h3>
-						<p>new jSprite(options);</p>
+												<p class='code'>
+						sp11 = new jSprite({<br>
+						spriteSheet: "./sprite_sheet.png",<br>
+						container: "elementId",<br>
+						columns: 6,<br>
+						rows: 6,<br>
+						timing: 100,<br>
+						autoStart: true,<br>
+						repeat: true<br>
+						});						
+						</p>
 						<div class="btn-container">
 							<button onclick="sp11.start()" class="btn-left button style2">START</button>
 							<button onclick="sp11.stop()" class="btn-right button style2">STOP</button>
