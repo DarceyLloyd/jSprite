@@ -20,20 +20,30 @@ jSprite will resize the container to the dimensions it calculates the a single s
 
 ````
 let mySprite = new jSprite({
-    spriteSheet: "./images/sheet1.png",
-    container: "sp1",
-    columns: 12,
-    rows: 7,
-    widthOffset: -6,
-    timing: 30,
-    // timings: [100,200,300,400,500,600],
-    repeat: true
+	spriteSheet: "./images/sheet1.png",
+	container: "htmlID",
+	columns: 8,
+	rows: 4,
+	widthOffset: 0,
+	startFrame: 17,
+	length: 8,
+	timing: 75,
+	autoStart: true,
+	repeat: true,
+	onComplete: function,
+	onProgress: function,
+	onComplete: function,
+	onRepeat: function,
+	onStop: function
 });
 
 ````
 
 
-<h4>Parameter details:</h4>
+---
+
+
+## <b>Parameters</b>
 <table>
     <tr>
         <th>Name</th>
@@ -93,10 +103,39 @@ let mySprite = new jSprite({
         <td>repeat</td>
         <td>Boolean</td>
         <td></td>
-        <td>Do you want the sprite animation to repeat, yes = true, no = false</td>
+        <td>Do you want the sprite animation to repeat, yes = true, no = false, default = true</td>
+    </tr>
+    <tr>
+        <td>onStart</td>
+        <td>function</td>
+        <td></td>
+        <td>Function callback for when start is called</td>
+    </tr>
+    <tr>
+        <td>onStop</td>
+        <td>function</td>
+        <td></td>
+        <td>Function callback for when stop is called</td>
+    </tr>
+    <tr>
+        <td>onProgress</td>
+        <td>function</td>
+        <td></td>
+        <td>Function called for each frame setp of the sprite</td>
+    </tr>
+    <tr>
+        <td>onRepeat</td>
+        <td>function</td>
+        <td></td>
+        <td>Function callback for when sprite animation repeats</td>
+    </tr>
+    <tr>
+        <td>onComplete</td>
+        <td>function</td>
+        <td></td>
+        <td>Function callback for when sprite animation is complete</td>
     </tr>
 </table>
-
 
 
 
@@ -110,7 +149,7 @@ let mySprite = new jSprite({
 
 
 
-<h4>Available methods:</h4>
+### <b>Methods</b>
 <table>
     <tr>
         <th>Name</th>
