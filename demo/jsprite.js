@@ -3,6 +3,7 @@ let jSprite = function() {
     // log("jSprite");
 
     let args = {
+        debug: false,
         spriteSheet: false,
         container: false,
         columns: false,
@@ -54,6 +55,7 @@ let jSprite = function() {
         noOfFramesToPlay: 0,
         stopRequested: false,
         bg: false,
+        dispose: false,
         status: "stopped", // playing, stopped
     };
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -203,9 +205,14 @@ let jSprite = function() {
         }
 
         // log("AFTER:");
-        // log("maxFrames = " + vars.maxFrames);
-        // log("args.startFrame = " + args.startFrame + "   args.endFrame = " + args.endFrame);
-        // log("args.length = " + args.length + "    vars.noOfFramesToPlay = " + vars.noOfFramesToPlay);
+        if (args.debug) {
+            log("jSprite: init");
+            log("maxFrames = " + vars.maxFrames);
+            log("args.startFrame = " + args.startFrame + "   args.endFrame = " + args.endFrame);
+            log("args.length = " + args.length + "    vars.noOfFramesToPlay = " + vars.noOfFramesToPlay);
+            log("- - - - -");
+        }
+
 
 
         // Calculate all frames and background positions
@@ -256,6 +263,10 @@ let jSprite = function() {
     function animate() {
         // log("animate()");
         // log(vars.frame);
+
+        if (this.dispose === true) {
+            return;
+        }
 
         // Handle stop request
         if (vars.stopRequested === true) {
@@ -426,9 +437,13 @@ let jSprite = function() {
         }
         vars.frame = args.startFrame;
 
-        // log("maxFrames = " + vars.maxFrames);
-        // log("args.startFrame = " + args.startFrame + "   args.endFrame = " + args.endFrame);
-        // log("args.length = " + args.length + "    vars.noOfFramesToPlay = " + vars.noOfFramesToPlay);
+        if (args.debug) {
+            log("jSprite: setStartFrame");
+            log("maxFrames = " + vars.maxFrames);
+            log("args.startFrame = " + args.startFrame + "   args.endFrame = " + args.endFrame);
+            log("args.length = " + args.length + "    vars.noOfFramesToPlay = " + vars.noOfFramesToPlay);
+            log("- - - - -");
+        }
     }
 
     this.setLength = function(v) {
@@ -441,14 +456,27 @@ let jSprite = function() {
         }
         vars.frame = args.startFrame;
 
-        // log("maxFrames = " + vars.maxFrames);
-        // log("args.startFrame = " + args.startFrame + "   args.endFrame = " + args.endFrame);
-        // log("args.length = " + args.length + "    vars.noOfFramesToPlay = " + vars.noOfFramesToPlay);
+        if (args.debug) {
+            log("jSprite: setLength");
+            log("maxFrames = " + vars.maxFrames);
+            log("args.startFrame = " + args.startFrame + "   args.endFrame = " + args.endFrame);
+            log("args.length = " + args.length + "    vars.noOfFramesToPlay = " + vars.noOfFramesToPlay);
+            log("- - - - -");
+        }
     }
 
 
 
-
+    this.dispose = function() {
+        vars.dispose = true;
+        delete vars;
+        delete args;
+        delete setLength;
+        delete setStartFrame;
+        delete start;
+        delete stop;
+        delete restart;
+    }
 
 
     // Constructor simulation
