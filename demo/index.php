@@ -25,193 +25,223 @@
 		let sp1,sp2,sp3,sp4,sp5,sp6,sp7,sp8,sp9,sp10,sp11;
 
 		function init(){
-			sp1 = new jSprite({
-				spriteSheet: "./images/sheet1.png",
-				container: "sp1",
-				columns: 6,
-				rows: 6,
-				// widthOffset: -6,
-				startFrame: 1,
-				timing: 100,
-				autoStart: true,
-				repeat: true
-			});
+			// sp1 = new jSprite({
+			// 	spriteSheet: "./images/sheet1.png",
+			// 	container: "sp1",
+			// 	columns: 6,
+			// 	rows: 6,
+			// 	// widthOffset: -6,
+			// 	startFrame: 1,
+			// 	timing: 100,
+			// 	autoStart: true,
+			// 	repeat: true
+			// });
+            //
+            //
+			// sp2 = new jSprite({
+			// 	spriteSheet: "./images/sheet2.png",
+			// 	container: "sp2",
+			// 	columns: 8,
+			// 	rows: 10,
+			// 	widthOffset: 0,
+			// 	timing: 120,
+			// 	repeat: true,
+			// 	autoStart: true,
+			// 	onStart: function(){
+			// 		let info = document.getElementById("ex2-start");
+			// 		info.innerHTML = "STARTED";
+			// 		setTimeout(function(){
+			// 			info.innerHTML = "";
+			// 		},1500);
+            //
+			// 		let info2 = document.getElementById("ex2-stop");
+			// 		info2.innerHTML = "";
+			// 	},
+			// 	onStop: function(){
+			// 		let info = document.getElementById("ex2-stop");
+			// 		info.innerHTML = "STOPPED!";
+			// 	},
+			// 	onProgress: function(e){
+			// 		let info = document.getElementById("ex2-progress");
+			// 		info.innerHTML = "Current frame " + e.frame + "/" + e.totalFrames;
+			// 	},
+			// 	onRepeat: function(e){
+			// 		let info = document.getElementById("ex2-repeat");
+			// 		info.innerHTML = "REPEAT!";
+			// 		setTimeout(function(){
+			// 			info.innerHTML = "";
+			// 		},1500);
+			// 	},
+			// 	onComplete: function(){
+			// 		let info = document.getElementById("ex2-complete");
+			// 		info.innerHTML = "COMPLETE!";
+			// 		setTimeout(function(){
+			// 			info.innerHTML = "";
+			// 		},1500);
+			// 	}
+			// });
+            //
+            //
+			// sp3 = new jSprite({
+			// 	spriteSheet: "./images/sheet3.png",
+			// 	container: "sp3",
+			// 	columns: 7,
+			// 	rows: 4,
+			// 	widthOffset: 0,
+			// 	startFrame: 1,
+			// 	endFrame: 27,
+			// 	// length: 4,
+			// 	timing: 30,
+			// 	autoStart: true,
+			// 	repeat: true
+			// });
+            //
+            //
+			// sp4 = new jSprite({
+			// 	spriteSheet: "./images/sheet4.png",
+			// 	container: "sp4",
+			// 	columns: 6,
+			// 	rows: 2,
+			// 	widthOffset: 0,
+			// 	startFrame: 1,
+			// 	endFrame: 6,
+			// 	// length: 4,
+			// 	timing: 100,
+			// 	autoStart: true,
+			// 	repeat: true
+			// });
+            //
+            //
+			// sp5 = new jSprite({
+			// 	spriteSheet: "./images/sheet5.png",
+			// 	container: "sp5",
+			// 	columns: 8,
+			// 	rows: 4,
+			// 	widthOffset: 0,
+			// 	startFrame: 1,
+			// 	// endFrame: 27,
+			// 	// length: 4,
+			// 	timing: 30,
+			// 	repeat: false
+			// });
+            //
+            //
+			// sp6 = new jSprite({
+			// 	spriteSheet: "./images/sheet6.png",
+			// 	container: "sp6",
+			// 	columns: 8,
+			// 	rows: 2,
+			// 	widthOffset: 0,
+			// 	startFrame: 1,
+			// 	// endFrame: 27,
+			// 	// length: 4,
+			// 	timing: 30,
+			// 	autoStart: true,
+			// 	repeat: true
+			// });
+            //
+            //
+            //
+			// sp7 = new jSprite({
+			// 	spriteSheet: "./images/sheet8.png",
+			// 	container: "sp7",
+			// 	columns: 6,
+			// 	rows: 3,
+			// 	widthOffset: 0,
+			// 	startFrame: 0,
+			// 	// endFrame: 27,
+			// 	// length: 4,
+			// 	timing: 500,
+			// 	autoStart: true,
+			// 	repeat: true
+            // });
+            //
+            // sp8 = new jSprite({
+			// 	spriteSheet: "./images/sheet7.png",
+			// 	container: "sp8",
+			// 	columns: 8,
+			// 	rows: 4,
+			// 	widthOffset: 0,
+			// 	length: 8,
+			// 	timing: 75,
+			// 	autoStart: true,
+			// 	repeat: true
+			// });
+            //
+            //
+			// sp9 = new jSprite({
+			// 	spriteSheet: "./images/sheet7.png",
+			// 	container: "sp9",
+			// 	columns: 8,
+			// 	rows: 4,
+			// 	widthOffset: 0,
+			// 	startFrame: 9,
+			// 	// endFrame: 27,
+			// 	length: 8,
+			// 	timing: 75,
+			// 	autoStart: true,
+			// 	repeat: true
+			// });
+            //
+            //
+			// sp10 = new jSprite({
+			// 	spriteSheet: "./images/sheet7.png",
+			// 	container: "sp10",
+			// 	columns: 8,
+			// 	rows: 4,
+			// 	widthOffset: 0,
+			// 	startFrame: 17,
+			// 	// endFrame: 27,
+			// 	length: 8,
+			// 	timing: 75,
+			// 	autoStart: true,
+			// 	repeat: true
+            // });
+            //
+            //
+            // sp11 = new jSprite({
+			// 	spriteSheet: "./images/sheet7.png",
+			// 	container: "sp11",
+			// 	columns: 8,
+			// 	rows: 4,
+			// 	widthOffset: 0,
+			// 	startFrame: 25,
+			// 	// endFrame: 27,
+			// 	length: 8,
+			// 	timing: 100,
+			// 	autoStart: true,
+			// 	repeat: true
+			// });
+            //
 
-
-			sp2 = new jSprite({
-				spriteSheet: "./images/sheet2.png",
-				container: "sp2",
-				columns: 8,
-				rows: 10,
-				widthOffset: 0,
-				timing: 120,
-				repeat: true,
-				autoStart: true,
-				onStart: function(){
-					let info = document.getElementById("ex2-start");
-					info.innerHTML = "STARTED";
-					setTimeout(function(){
-						info.innerHTML = "";
-					},1500);
-
-					let info2 = document.getElementById("ex2-stop");
-					info2.innerHTML = "";
-				},
-				onStop: function(){
-					let info = document.getElementById("ex2-stop");
-					info.innerHTML = "STOPPED!";
-				},
-				onProgress: function(e){
-					let info = document.getElementById("ex2-progress");
-					info.innerHTML = "Current frame " + e.frame + "/" + e.totalFrames;
-				},
-				onRepeat: function(e){
-					let info = document.getElementById("ex2-repeat");
-					info.innerHTML = "REPEAT!";
-					setTimeout(function(){
-						info.innerHTML = "";
-					},1500);
-				},
-				onComplete: function(){
-					let info = document.getElementById("ex2-complete");
-					info.innerHTML = "COMPLETE!";
-					setTimeout(function(){
-						info.innerHTML = "";
-					},1500);
-				}
-			});
-
-
-			sp3 = new jSprite({
-				spriteSheet: "./images/sheet3.png",
-				container: "sp3",
-				columns: 7,
+			sp12 = new jSprite({
+				spriteSheet: "./images/sheet12.png",
+				container: "sp12",
+				columns: 9,
 				rows: 4,
-				widthOffset: 0,
-				startFrame: 1,
-				endFrame: 27,
-				// length: 4,
-				timing: 30,
-				autoStart: true,
-				repeat: true
-			});
-
-
-			sp4 = new jSprite({
-				spriteSheet: "./images/sheet4.png",
-				container: "sp4",
-				columns: 6,
-				rows: 2,
-				widthOffset: 0,
-				startFrame: 1,
-				endFrame: 6,
-				// length: 4,
-				timing: 100,
-				autoStart: true,
-				repeat: true
-			});
-
-
-			sp5 = new jSprite({
-				spriteSheet: "./images/sheet5.png",
-				container: "sp5",
-				columns: 8,
-				rows: 4,
-				widthOffset: 0,
-				startFrame: 1,
-				// endFrame: 27,
-				// length: 4,
-				timing: 30,
-				repeat: false
-			});
-
-
-			sp6 = new jSprite({
-				spriteSheet: "./images/sheet6.png",
-				container: "sp6",
-				columns: 8,
-				rows: 2,
-				widthOffset: 0,
-				startFrame: 1,
-				// endFrame: 27,
-				// length: 4,
-				timing: 30,
+				timing: 600,
 				autoStart: true,
 				repeat: true
 			});
 
 
 
-			sp7 = new jSprite({
-				spriteSheet: "./images/sheet8.png",
-				container: "sp7",
-				columns: 6,
-				rows: 3,
-				widthOffset: 0,
-				startFrame: 0,
-				// endFrame: 27,
-				// length: 4,
-				timing: 500,
-				autoStart: true,
-				repeat: true
-            });
-            
-            sp8 = new jSprite({
-				spriteSheet: "./images/sheet7.png",
-				container: "sp8",
-				columns: 8,
-				rows: 4,
-				widthOffset: 0,
-				length: 8,
-				timing: 75,
-				autoStart: true,
-				repeat: true
-			});
+		} // end function init
 
 
-			sp9 = new jSprite({
-				spriteSheet: "./images/sheet7.png",
-				container: "sp9",
-				columns: 8,
-				rows: 4,
-				widthOffset: 0,
-				startFrame: 9,
-				// endFrame: 27,
-				length: 8,
-				timing: 75,
-				autoStart: true,
-				repeat: true
-			});
 
 
-			sp10 = new jSprite({
-				spriteSheet: "./images/sheet7.png",
-				container: "sp10",
-				columns: 8,
-				rows: 4,
-				widthOffset: 0,
-				startFrame: 17,
-				// endFrame: 27,
-				length: 8,
-				timing: 75,
-				autoStart: true,
-				repeat: true
-            });
-            
-            
-            sp11 = new jSprite({
-				spriteSheet: "./images/sheet7.png",
-				container: "sp11",
-				columns: 8,
-				rows: 4,
-				widthOffset: 0,
-				startFrame: 25,
-				// endFrame: 27,
-				length: 8,
-				timing: 100,
-				autoStart: true,
-				repeat: true
-			});
+		function setStart(){
+			let input = document.getElementById("start-frame");
+			let v = parseInt(input.value);
+			sp12.setStartFrame(v);
+		}
+
+
+		function setLength(){
+			let input = document.getElementById("length");
+            let v = parseInt(input.value);
+			sp12.setLength(v);
 		}
 	</script>
 
@@ -683,6 +713,29 @@ sp10 = new jSprite({
 						<div class="btn-container">
 							<button onclick="sp11.start()" class="btn-left button style2">START</button>
 							<button onclick="sp11.stop()" class="btn-right button style2">STOP</button>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="box">
+					<!-- <a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img src="images/pic01.jpg" alt="" /></a> -->
+					<div class="sprite-container">
+						<div id="sp12" class="sprite"></div>
+					</div>
+					<div class="inner">
+						<h3>Example 12</h3>
+                        <p>This is a 9 x 4 grid, this shows you how you can play a different animation on each row.</p>
+						<div class="btn-container">
+							<button onclick="sp12.start()" class="btn-left button style2">START</button>
+							<button onclick="sp12.stop()" class="btn-right button style2">STOP</button>
+							<br>
+							<span class="input-label">Start: </span>
+							<input type="number" id="start-frame" value="10" min="1" max="36"><br>
+							<span class="input-label">Length: </span>
+							<input type="number" id="length" value="9" min="1" max="10"><br>
+							<button onclick="setStart()" class="btn-right button style2">set Start Frame</button>
+							<button onclick="setLength()" class="btn-right button style2">set Length</button>
 						</div>
 					</div>
 				</div>

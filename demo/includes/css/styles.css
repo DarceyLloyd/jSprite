@@ -144,6 +144,22 @@ button {
 }
 
 
+.input-label {
+    display: inline-block;
+    width: 60px;
+    font-size: 12px;
+    font-weight: bold;
+    /* border: 1px solid #FFFFFF; */
+}
+
+
+
+
+.btn-container input {
+    display: inline;
+    color: #000000;
+    width: 50px;
+}
 
 
 

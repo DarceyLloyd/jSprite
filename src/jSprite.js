@@ -53,6 +53,7 @@ let jSprite = function () {
         maxFrames: 0,
         noOfFramesToPlay: 0,
         stopRequested: false,
+        bg: false,
         status: "stopped", // playing, stopped
     };
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -60,9 +61,6 @@ let jSprite = function () {
 
     function init() {
         // log("jSprite.init()");
-
-        // DOM vars
-        vars.dom.container = document.getElementById(args.container);
 
         // validate args
         if (args.startFrame < 1){
@@ -107,6 +105,7 @@ let jSprite = function () {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
+
     function imageLoaded(e) {
         // log("jSprite.imageLoaded(e)");
         // log(e.target);
@@ -118,6 +117,29 @@ let jSprite = function () {
         // log("e.target.width = " + e.target.width + "    e.target.height = " + e.target.height);
         vars.frameW = Math.ceil(e.target.width / args.columns);
         vars.frameH = Math.ceil(e.target.height / args.rows);
+
+        // setup css background on container from img src
+        let bg = "url(" + e.target.src + ")";
+        
+        vars.dom.container = document.getElementById(args.container);
+        vars.dom.container.style.backgroundImage = bg;
+        vars.dom.container.style.backgroundRepeat = "no-repeat";
+        vars.dom.container.style.backgroundPosition = "0px 0px";
+
+        initVars(true);
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+    function initVars(fromImageLoad){
+        log("initVars(fromImageLoad:"+fromImageLoad+")");
+
+        if (!fromImageLoad){
+            vars.frame = args.startFrame;
+        }
+
+        // log("jSprite.initVars()");
         vars.xLim = vars.spriteSheetW / vars.frameW;
         vars.yLim = vars.spriteSheetH / vars.frameH;
 
@@ -142,7 +164,7 @@ let jSprite = function () {
         // endFrame takes priority over length
         if (args.length === false && args.endFrame === false){
             // Neither have been supplied use max frames for noOfFramesToPlay
-            log("jSprite: Auto calculating no of frames in sprite [" + vars.img.src + "] [" + vars.maxFrames+ "].");
+            // log("jSprite: Auto calculating no of frames in sprite [" + vars.img.src + "] [" + vars.maxFrames+ "].");
             vars.noOfFramesToPlay = vars.maxFrames;
             args.length = vars.maxFrames;
             args.endFrame = vars.maxFrames;
@@ -182,10 +204,8 @@ let jSprite = function () {
 
         // log("AFTER:");
         // log("maxFrames = " + vars.maxFrames);
-        // log("args.startFrame = " + args.startFrame);
-        // log("args.endFrame = " + args.endFrame);
-        // log("args.length = " + args.length);
-        // log("vars.noOfFramesToPlay = " + vars.noOfFramesToPlay);
+        // log("args.startFrame = " + args.startFrame + "   args.endFrame = " + args.endFrame);
+        // log("args.length = " + args.length + "    vars.noOfFramesToPlay = " + vars.noOfFramesToPlay);
 
 
         // Calculate all frames and background positions
@@ -212,27 +232,21 @@ let jSprite = function () {
         }
         // log(vars.frames);
 
-
-        // setup css background on container from img src
-        let bg = "url(" + e.target.src + ")";
-        vars.dom.container.style.backgroundImage = bg;
-        vars.dom.container.style.backgroundRepeat = "no-repeat";
-        vars.dom.container.style.backgroundPosition = "0px 0px";
-
-
-        
-
         // log(args);
         // log(vars);
 
         vars.frame = args.startFrame;
 
-        if (args.autoStart){
-            if (args.onStart !== false){
-                args.onStart();
+
+        if (fromImageLoad === true){
+            if (args.autoStart){
+                if (args.onStart !== false){
+                    args.onStart();
+                }
+                animate();
             }
-            animate();
         }
+
         
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -393,6 +407,43 @@ let jSprite = function () {
     this.restart = function () {
         restart();
     }
+
+
+    this.setStartFrame = function(v){
+        // log("jSprite.setStartFrame(v:"+v+")");
+
+        args.startFrame = v;
+
+        args.endFrame = args.startFrame + args.length;
+
+        if (args.endFrame > vars.maxFrames){
+            args.endFrame = vars.maxFrames;
+            args.length = vars.maxFrames - args.startFrame;
+        }
+        vars.frame = args.startFrame;
+
+        // log("maxFrames = " + vars.maxFrames);
+        // log("args.startFrame = " + args.startFrame + "   args.endFrame = " + args.endFrame);
+        // log("args.length = " + args.length + "    vars.noOfFramesToPlay = " + vars.noOfFramesToPlay);
+    }
+
+    this.setLength = function(v){
+        // log("jSprite.setLength(v:"+v+")");
+
+        args.length = (v-1);
+        args.endFrame = args.startFrame + args.length;
+        if (args.endFrame > vars.maxFrames){
+            args.endFrame = vars.maxFrames;
+        }
+        vars.frame = args.startFrame;
+
+        // log("maxFrames = " + vars.maxFrames);
+        // log("args.startFrame = " + args.startFrame + "   args.endFrame = " + args.endFrame);
+        // log("args.length = " + args.length + "    vars.noOfFramesToPlay = " + vars.noOfFramesToPlay);
+    }
+
+
+
 
 
 
