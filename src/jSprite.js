@@ -66,7 +66,7 @@ let jSprite = function () {
 
 
     function constructor() {
-        log("jSprite.constructor()");
+        // log("jSprite.constructor()");
 
         // validate args
         if (args.startFrame < 1){
@@ -233,7 +233,7 @@ let jSprite = function () {
             vars.length = args.length;
 
             // Check no of frames from startFrame can handle the length
-            let possibleEndFrame = vars.startFrame + vars.length;
+            let possibleEndFrame = vars.startFrame + vars.length-1;
             if (possibleEndFrame > vars.maxFrames){
                 // User is trying to play past the number of frames available!
                 let msg = "jSprite: You have set a playback length of [" + args.length + "] from a ";
